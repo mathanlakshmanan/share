@@ -5,7 +5,7 @@ function App() {
   // const [selectedFile, setSelectedFile] = useState({});
 
   const setSelectedFile = async(e)=>{
-    e.preventDefault();
+//     e.preventDefault();
     console.log("working");
     console.log("selectedFile", e.target.files[0]); 
       try {
