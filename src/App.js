@@ -8,29 +8,29 @@ function App() {
 //     e.preventDefault();
     console.log("working");
     console.log("selectedFile", e.target.files[0]); 
-      try {
-        await navigator.share({
-          title: "Example File",
-          text: 'Check out web.dev.',
-          url: 'https://web.dev/',
-          files: [e.target.files[0]]
-        });
-      } catch (err) {
-        console.error("Share failed:", err.message);
-      }
+      // try {
+      //   await navigator.share({
+      //     title: "Example File",
+      //     text: 'Check out web.dev.',
+      //     url: 'https://web.dev/',
+      //     files: [e.target.files[0]]
+      //   });
+      // } catch (err) {
+      //   console.error("Share failed:", err.message);
+      // }
 
 
-    // if (navigator.canShare && navigator.canShare({ files: e.target.files[0] })) {
-    //   navigator.share({
-    //     files: e.target.files[0],
-    //     title: 'Vacation Pictures',
-    //     text: 'Photos from September 27 to October 14.',
-    //   })
-    //   .then(() => console.log('Share was successful.'))
-    //   .catch((error) => console.log('Sharing failed', error));
-    // } else {
-    //   console.log(`Your system doesn't support sharing files.`);
-    // }
+    if (navigator.canShare && navigator.canShare({ files: e.target.files[0] })) {
+      navigator.share({
+        files: e.target.files[0],
+        title: 'Vacation Pictures',
+        text: 'Photos from September 27 to October 14.',
+      })
+      .then(() => console.log('Share was successful.'))
+      .catch((error) => console.log('Sharing failed', error));
+    } else {
+      console.log(`Your system doesn't support sharing files.`);
+    }
 
 
     // if (navigator.share) {
