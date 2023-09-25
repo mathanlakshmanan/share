@@ -8,12 +8,13 @@ function App() {
 //     e.preventDefault();
     console.log("working");
     console.log("selectedFile", e.target.files[0]); 
+    const file = new File([e.target.files[0]], 'fileName.png', { type: e.target.files[0].type });
       try {
         await navigator.share({
           title: "Example File",
           text: 'Check out web.dev.',
           url: 'https://web.dev/',
-          files: [e.target.files[0]]
+          files: [file]
         });
       } catch (err) {
         console.error("Share failed:", err.message);
