@@ -20,17 +20,17 @@ function App() {
       // }
 
 
-    if (navigator.canShare && navigator.canShare({ files: e.target.files[0] })) {
-      navigator.share({
-        files: e.target.files[0],
-        title: 'Vacation Pictures',
-        text: 'Photos from September 27 to October 14.',
-      })
-      .then(() => console.log('Share was successful.'))
-      .catch((error) => console.log('Sharing failed', error));
-    } else {
-      console.log(`Your system doesn't support sharing files.`);
-    }
+    // if (navigator.canShare && navigator.canShare({ files: e.target.files[0] })) {
+    //   navigator.share({
+    //     files: e.target.files[0],
+    //     title: 'Vacation Pictures',
+    //     text: 'Photos from September 27 to October 14.',
+    //   })
+    //   .then(() => console.log('Share was successful.'))
+    //   .catch((error) => console.log('Sharing failed', error));
+    // } else {
+    //   console.log(`Your system doesn't support sharing files.`);
+    // }
 
 
     // if (navigator.share) {
@@ -58,6 +58,41 @@ function App() {
     //     console.error("Share failed:", err.message);
     //   }
     // });
+
+
+    const input = document.getElementById("shareFile");
+const output = document.getElementById("output");
+
+document.getElementById("share").addEventListener("click", async () => {
+  const files = input.files;
+
+  if (files.length === 0) {
+    output.textContent = "No files selected.";
+    return;
+  }
+
+  // feature detecting navigator.canShare() also implies
+  // the same for the navigator.share()
+  if (!navigator.canShare) {
+    output.textContent = `Your browser doesn't support the Web Share API.`;
+    return;
+  }
+
+  if (navigator.canShare({ files })) {
+    try {
+      await navigator.share({
+        files,
+        title: "Images",
+        text: "Beautiful images",
+      });
+      output.textContent = "Shared!";
+    } catch (error) {
+      output.textContent = `Error: ${error.message}`;
+    }
+  } else {
+    output.textContent = `Your system doesn't support sharing these files.`;
+  }
+});
   }
  
   
@@ -72,7 +107,8 @@ function App() {
           onChange={(e) => setSelectedFile(e)}
         />
         {/* <input type='submit' className='btn btn-primary' value={'Share'} onClick={()=>share()} /> */}
-      </form>
+<output id="output"></output>
+            </form>
    
    </>
   );
