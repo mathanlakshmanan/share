@@ -8,16 +8,16 @@ function App() {
 //     e.preventDefault();
     console.log("working");
     console.log("selectedFile", e.target.files[0]); 
-      // try {
-      //   await navigator.share({
-      //     title: "Example File",
-      //     text: 'Check out web.dev.',
-      //     url: 'https://web.dev/',
-      //     files: [e.target.files[0]]
-      //   });
-      // } catch (err) {
-      //   console.error("Share failed:", err.message);
-      // }
+      try {
+        await navigator.share({
+          title: "Example File",
+          text: 'Check out web.dev.',
+          url: 'https://web.dev/',
+          files: [e.target.files[0]]
+        });
+      } catch (err) {
+        console.error("Share failed:", err.message);
+      }
 
 
     // if (navigator.canShare && navigator.canShare({ files: e.target.files[0] })) {
@@ -59,62 +59,22 @@ function App() {
     //   }
     // });
 
-
-    const input = document.getElementById("shareFile");
-const output = document.getElementById("output");
-
-document.getElementById("share").addEventListener("click", async () => {
-  const files = input.files;
-
-  if (files.length === 0) {
-    output.textContent = "No files selected.";
-    return;
-  }
-
-  // feature detecting navigator.canShare() also implies
-  // the same for the navigator.share()
-  if (!navigator.canShare) {
-    output.textContent = `Your browser doesn't support the Web Share API.`;
-    return;
-  }
-
-  if (navigator.canShare({ files })) {
-    try {
-      await navigator.share({
-        files,
-        title: "Images",
-        text: "Beautiful images",
-      });
-      output.textContent = "Shared!";
-    } catch (error) {
-      output.textContent = `Error: ${error.message}`;
-    }
-  } else {
-    output.textContent = `Your system doesn't support sharing these files.`;
-  }
-});
   }
  
   
   return (
    <>
-//     <form id="form">
-//         <input
-//           id='shareFile'
-//           name='shareFile'
-//           type="file"
-//           // value={selectedFile}
-//           onChange={(e) => setSelectedFile(e)}
-//         />
-//         {/* <input type='submit' className='btn btn-primary' value={'Share'} onClick={()=>share()} /> */}
-// <output id="output"></output>
-//             </form>
-   <div>
-  <label for="files">Select images to share:</label>
-  <input id="files" type="file" accept="image/*" multiple />
-</div>
-<button id="share" type="button">Share your images!</button>
+    <form id="form">
+        <input
+          id='shareFile'
+          name='shareFile'
+          type="file"
+          // value={selectedFile}
+          onChange={(e) => setSelectedFile(e)}
+        />
+        {/* <input type='submit' className='btn btn-primary' value={'Share'} onClick={()=>share()} /> */}
 <output id="output"></output>
+            </form>
    </>
   );
 }
