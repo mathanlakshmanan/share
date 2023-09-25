@@ -98,18 +98,23 @@ document.getElementById("share").addEventListener("click", async () => {
   
   return (
    <>
-    <form id="form">
-        <input
-          id='shareFile'
-          name='shareFile'
-          type="file"
-          // value={selectedFile}
-          onChange={(e) => setSelectedFile(e)}
-        />
-        {/* <input type='submit' className='btn btn-primary' value={'Share'} onClick={()=>share()} /> */}
+//     <form id="form">
+//         <input
+//           id='shareFile'
+//           name='shareFile'
+//           type="file"
+//           // value={selectedFile}
+//           onChange={(e) => setSelectedFile(e)}
+//         />
+//         {/* <input type='submit' className='btn btn-primary' value={'Share'} onClick={()=>share()} /> */}
+// <output id="output"></output>
+//             </form>
+   <div>
+  <label for="files">Select images to share:</label>
+  <input id="files" type="file" accept="image/*" multiple />
+</div>
+<button id="share" type="button">Share your images!</button>
 <output id="output"></output>
-            </form>
-   
    </>
   );
 }
