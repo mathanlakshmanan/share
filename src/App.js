@@ -39,8 +39,8 @@ function App() {
       const file = new File(data, e.target.files[0].name, { type: e.target.files[0].type });
       try {
         await navigator.share({
-          title: "Example File",
-          text: 'Check out web.dev.',
+          // title: "Example File",
+          // text: 'Check out web.dev.',
           url: 'https://web.dev/',
           files: [file]
         });
