@@ -2,7 +2,7 @@
 import './App.css';
 
 function App() {
-  // const [selectedFile, setSelectedFile] = useState({});
+  const [selectedFile, setSelectedFile] = useState({});
 
   const setSelectedFile = async(e)=>{
 //     e.preventDefault();
