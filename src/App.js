@@ -8,17 +8,6 @@ function App() {
 //     e.preventDefault();
     console.log("working");
     console.log("selectedFile", e.target.files[0]); 
-    const file = new File([e.target.files[0]], 'fileName.png', { type: e.target.files[0].type });
-      try {
-        await navigator.share({
-          title: "Example File",
-          text: 'Check out web.dev.',
-          url: 'https://web.dev/',
-          files: [file]
-        });
-      } catch (err) {
-        console.error("Share failed:", err.message);
-      }
 
 
     // if (navigator.canShare && navigator.canShare({ files: e.target.files[0] })) {
@@ -44,21 +33,21 @@ function App() {
     //     .catch((error) => console.log('Error sharing', error));
     // }
 
-    // const shareButton = document.getElementById("shareFile");
-    // const data = [];
-    // shareButton.addEventListener("click", async () => {
-    //   const file = new File(data, e.target.files[0].name, { type: e.target.files[0].type });
-    //   try {
-    //     await navigator.share({
-    //       title: "Example File",
-    //       text: 'Check out web.dev.',
-    //       url: 'https://web.dev/',
-    //       files: [file]
-    //     });
-    //   } catch (err) {
-    //     console.error("Share failed:", err.message);
-    //   }
-    // });
+    const shareButton = document.getElementById("shareFile");
+    const data = [];
+    shareButton.addEventListener("click", async () => {
+      const file = new File(data, e.target.files[0].name, { type: e.target.files[0].type });
+      try {
+        await navigator.share({
+          title: "Example File",
+          text: 'Check out web.dev.',
+          url: 'https://web.dev/',
+          files: [file]
+        });
+      } catch (err) {
+        console.error("Share failed:", err.message);
+      }
+    });
 
   }
  
@@ -74,7 +63,6 @@ function App() {
           onChange={(e) => setSelectedFile(e)}
         />
         {/* <input type='submit' className='btn btn-primary' value={'Share'} onClick={()=>share()} /> */}
-<output id="output"></output>
             </form>
    </>
   );
